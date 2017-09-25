@@ -1,5 +1,5 @@
 chiasmBin/*.gif
 chiasmBin/liquidcorners.css
 chiasmBin/drag.js
-*.js
-*.html
+/*.js
+/*.html

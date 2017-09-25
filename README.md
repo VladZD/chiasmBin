@@ -6,7 +6,7 @@ chiasmBin
 
 Popup border customization:
 ```css
-.popup {
+#popup {
   border-color: grey;
 }
 ```
