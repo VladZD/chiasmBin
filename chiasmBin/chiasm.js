@@ -8,20 +8,13 @@ var popup;
 window.onload = function() {
 	if (!isFullHeightIframe()) return;
 	document.body.style.overflow = 'hidden';
+	addListener('resize', resizeListener);
 	setIframeHeight();
 };
 
-if (window.addEventListener) {
-	window.addEventListener("message", getPositionListener);
-	window.addEventListener('resize', resizeListener);
-} else {
-	window.attachEvent("onmessage", getPositionListener);
-	window.attachEvent('onresize', resizeListener);
-}
+addListener('message', getPositionListener);
 
 function resizeListener() {
-	//uncomment if the width of usual iframes can be fluid
-	// if (!isFullHeightIframe()) return;
 	if (iframeHeight.isHeightAdjusted === false) {
 		iframeHeight.isHeightAdjusted = true;
 		return;
@@ -33,6 +26,7 @@ function resizeListener() {
 	}
 };
 
+// keeps the state of the current resizing
 var iframeHeight = (function() {
 	var resize = throttle(function(startResize) {
 		obj.isCollapsed = startResize;
@@ -51,6 +45,16 @@ var iframeHeight = (function() {
 	return obj;
 })();
 
+function addListener(event, listener) {
+	if (window.addEventListener) {
+		window.addEventListener(event, listener);
+	} else {
+		window.attachEvent("on" + event, listener);
+	}
+}
+
+// makes sure that the passed func doesn't run more than once in a specified number of ms
+// if it is called another time during the specified time, the timer will be reset
 function throttle(func, ms) {
 	var isRunning, isQueued, timeId;
 	var setTimer = function() {
@@ -79,6 +83,8 @@ function throttle(func, ms) {
 	return run;
 };
 
+// sends a message for the outer window to set the height of the iframe
+// either to the height of the iframe page, or 'none' to collapse the iframe
 function setIframeHeight(height) {
 	height = height || Math.max(
 		document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -175,7 +181,7 @@ function wipe() {
 				document.getElementById(arr[i]['id']).style.background='transparent';
 			} catch (err) {
 }}}}
-	
+
 function matchWrap(obj) {
 	if (!retainShading) {
 		var strWithId = obj.id; // the id is at end: i.e. "barId22"
