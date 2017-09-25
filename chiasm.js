@@ -79,14 +79,14 @@ function throttle(func, ms) {
 };
 
 function setIframeHeight(height) {
-	var scrollHeight = height || Math.max(
+	height = height || Math.max(
 		document.body.scrollHeight, document.documentElement.scrollHeight,
 		document.body.offsetHeight, document.documentElement.offsetHeight,
 		document.body.clientHeight, document.documentElement.clientHeight
 	) + 'px';
 	var message = {
 		type: 'c2k_set_iframe_height',
-		height: height || scrollHeight
+		height: height
 	};
 	window.parent.postMessage(JSON.stringify(message), '*');
 }

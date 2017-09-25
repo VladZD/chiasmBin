@@ -140,7 +140,7 @@
   } else {
     window.attachEvent("onmessage", listener);
   }
-  var URL = '192.168.100.3:8080/embed.js', //without protocol
+  var URL = '192.168.100.3:8080/chiasmBin/embed.js', //without protocol
     DOWNLOAD_LINK = '192.168.100.3:8080/',
     frames = [];
   window.__is_c2k_listener_set__ = true;
