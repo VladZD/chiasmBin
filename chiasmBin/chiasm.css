@@ -20,10 +20,21 @@ p, div {font-size: 12px;}
 .wrap {background: transparent; cursor:default; } /* margin-left value needs to be 2 px more than .b class width */
 .wrap > .wrap { margin-left:16px;}  
 .b {float:left;width: 14px;} /* between the width of b and w, there's a sweet spot at 14/9 and 16/10 */
-.w {width: 9px;} 
-#showDiv {position: absolute; display: none; cursor:move; z-index: 1}
-.inside {overflow: auto;} /* this keeps all contents like images contained inside the borders of commentary window  */
-div.dragBar {background-color:#737373; height:18px; margin-bottom:3px; padding: 2px;}
+.w {width: 9px;}
+#showDiv {
+  display: none;
+}
+#popup {
+  position: absolute;
+  padding: 5px;
+  overflow: auto;
+  z-index: 1;
+  cursor:move;
+  border: 3px solid grey;
+  border-radius: 5px;
+  background: #fff;
+}
+div.dragBar {background-color:#737373; height:18px; margin-bottom:10px; padding: 2px;}
 div.dragBar  a {background-image: url('close.gif'); float:right; width:18px; height:18px;}
 div.dragBar  a:hover {background-position: 0 -18px}
 .hebrew {font-size: 20px; line-height: 20px; color: #001320; font-family: Ezra SIL, SBL Hebrew, Palatino Linotype, Palatino, Century Schoolbook L, Times New Roman, Cardo, Arial, Helvetica, Sans-serif; text-decoration: none; }

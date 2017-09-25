@@ -1,3 +1,5 @@
-*.gif
-liquidcorners.css
-drag.js
+chiasmBin/*.gif
+chiasmBin/liquidcorners.css
+chiasmBin/drag.js
+*.js
+*.html
