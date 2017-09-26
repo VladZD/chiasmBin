@@ -23,7 +23,7 @@
       this.placeholder = placeholder;
     }
     placeholder.style.height = iframeHeight;
-    placeholder.style.display = getStyle(this.elem) || 'inline-block'
+    placeholder.style.display = getStyle(this.elem).display === 'block' ? 'block' : 'inline-block';
     this.elem.parentElement.insertBefore(placeholder, this.elem);
   };
   C2KIframe.prototype.hideIframePlaceholder = function() {
@@ -144,8 +144,8 @@
   } else {
     window.attachEvent("onmessage", listener);
   }
-  var URL = '192.168.100.3:8080/chiasmBin/embed.js', //without protocol
-    DOWNLOAD_LINK = '192.168.100.3:8080/',
+  var URL = 'chiasmatron2000.com/userpubs/chiasmBin/embed.js', //without protocol
+    DOWNLOAD_LINK = 'chiasmatron2000.com/userpubs/',
     frames = [];
   window.__is_c2k_listener_set__ = true;
   loadIframe();
