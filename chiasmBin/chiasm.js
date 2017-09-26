@@ -123,7 +123,7 @@ function showPopup(text) {
   if (!popup) {
     popup = document.createElement('div');
     popup.id = "popup";
-    popup.onmousedown = function() { return dragStart(event, 'popup'); };
+    popup.onmousedown = function(event) { return dragStart(event, 'popup'); };
     document.body.appendChild(popup);
   }
   var dragBar = '<div class="dragBar"><a href="javascript:void(0);" onclick="closePopup();"></a></div>';
