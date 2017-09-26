@@ -23,7 +23,7 @@
       this.placeholder = placeholder;
     }
     placeholder.style.height = iframeHeight;
-    placeholder.style.display = getStyle(this.elem) || 'inline-block'
+    placeholder.style.display = getStyle(this.elem).display === 'block' ? 'block' : 'inline-block';
     this.elem.parentElement.insertBefore(placeholder, this.elem);
   };
   C2KIframe.prototype.hideIframePlaceholder = function() {
