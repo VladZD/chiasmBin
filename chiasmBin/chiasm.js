@@ -42,11 +42,12 @@ var iframeHeight = (function() {
   return obj;
 })();
 
-function addListener(event, listener) {
+function addListener(event, listener, elem) {
+  elem = elem || window;
   if (window.addEventListener) {
-    window.addEventListener(event, listener);
+    elem.addEventListener(event, listener);
   } else {
-    window.attachEvent("on" + event, listener);
+    elem.attachEvent("on" + event, listener);
   }
 }
 
@@ -123,7 +124,10 @@ function showPopup(text) {
   if (!popup) {
     popup = document.createElement('div');
     popup.id = "popup";
-    popup.onmousedown = function(event) { return dragStart(event, 'popup'); };
+    popup.onmousedown = dragPopup;
+    popup.onselectstart = function() {
+      return false;
+    };
     document.body.appendChild(popup);
   }
   var dragBar = '<div class="dragBar"><a href="javascript:void(0);" onclick="closePopup();"></a></div>';
@@ -134,7 +138,7 @@ function showPopup(text) {
 
 function mouseOver(e, currentTarget) {
   if (retainShading) return;
-  var e = e || event;
+  e = e || event;
   var target = e.target || e.srcElement;
   if (shouldHighlight(target)) {
     match(currentTarget);
@@ -257,6 +261,36 @@ function horzCenter() {
   var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
   var popupWidth = popup.offsetWidth;
   return scrollLeft + width / 2 - popupWidth / 2 + "px";
+}
+
+function getIE8Event() {
+  var e = {};
+  e.which = event.button & 1 ? 1 : null;
+  e.pageX = event.clientX + document.documentElement.scrollLeft;
+  e.pageY = event.clientY + document.documentElement.scrollTop;
+  return e;
+}
+
+function dragPopup(e) {
+  e = e || getIE8Event();
+  if (e.which !== 1) return;
+  var shiftX = e.pageX - parseFloat(popup.style.left);
+  var shiftY = e.pageY - parseFloat(popup.style.top);
+
+  document.onmousemove = function(e) {
+    e = e || getIE8Event();
+    popup.style.left = e.pageX - shiftX + 'px';
+    popup.style.top = e.pageY - shiftY + 'px';
+  };
+
+  document.onmouseup = function() {
+    document.onmousemove = null;
+    document.onmouseup = null;
+    popup.onmousedown = dragPopup;
+  };
+  
+  popup.onmousedown = null;
+  return false;
 }
 
 function toggleLN() { /* During project development: toggle the line numbers on and off - that appear in the display */
