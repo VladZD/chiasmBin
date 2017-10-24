@@ -42,6 +42,7 @@
     var iframe = document.createElement('iframe');
     iframe.setAttribute('frameborder', '0');
     iframe.style.border = "0";
+    iframe.scrolling = 'no';
     if (options.width !== undefined) {
       iframe.style.width = options.width + (options.percent === 'yes' ? '%' : 'px');
     } else {
@@ -144,8 +145,8 @@
   } else {
     window.attachEvent("onmessage", listener);
   }
-  var URL = '192.168.100.3:8080/chiasmBin/embed.js', //without protocol
-    DOWNLOAD_LINK = '192.168.100.3:8080/',
+  var URL = 'localhost:3000/chiasmBin/embed.js', //without protocol
+    DOWNLOAD_LINK = 'localhost:3000/',
     frames = [];
   window.__is_c2k_listener_set__ = true;
   loadIframe();
