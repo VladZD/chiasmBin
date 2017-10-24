@@ -42,6 +42,7 @@
     var iframe = document.createElement('iframe');
     iframe.setAttribute('frameborder', '0');
     iframe.style.border = "0";
+    iframe.scrolling = 'no';
     if (options.width !== undefined) {
       iframe.style.width = options.width + (options.percent === 'yes' ? '%' : 'px');
     } else {
