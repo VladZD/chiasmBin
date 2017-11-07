@@ -2,7 +2,6 @@ body {background-color:#ffffff; font-family: arial,geneva,verdana; text-align:le
 h1 {font-size: 14px; color: #444;text-align:center;}
 .container {margin: 3px auto; padding: 5px; position:relative; width:99%;}
 p, div {font-size: 12px;}
-.borderCCC {border: 1px solid #ccc;padding:5px 0px;}	
 .r {background: transparent; margin-top:2px;}
 .r.ind0 {padding-left:0;}
 .r.ind1 {padding-left:15px;}
