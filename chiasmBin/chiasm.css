@@ -132,7 +132,7 @@ div.dragBar  a:hover {background-position: 0 -18px}
 }
 .collapsed:after {
     position: absolute;
-    content: 'The element has been collapsed';
+    content: 'Click (or double-tap) here to expand this section';
     background: inherit;
     height: 13.6px;
     left: 9px;
