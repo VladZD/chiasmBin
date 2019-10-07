@@ -121,3 +121,25 @@ div.dragBar  a:hover {background-position: 0 -18px}
   top: -2px;
   bottom: -2px;
 }
+/* new styles for collapsing feature */
+.container {background: white }
+.wrap { background: inherit }
+.collapsed {
+	background: #f4f4f4;
+	overflow: hidden;
+    margin-top: 2px;
+    height: 13.6px;
+}
+.collapsed:after {
+    position: absolute;
+    content: 'The element has been collapsed';
+    background: inherit;
+    height: 13.6px;
+    left: 9px;
+    right: 0;
+    top: 0;
+    font-style: italic;
+    color: grey;
+    padding-left: 6px;
+	cursor: pointer;
+}
