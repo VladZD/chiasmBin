@@ -9,6 +9,12 @@ window.onload = function() {
   if (!isFullHeightIframe()) return;
   document.body.style.overflow = 'hidden';
   addListener('resize', resizeListener);
+  document.querySelectorAll('.bar').forEach(elem => elem.addEventListener('contextmenu', function(e) {
+    e.preventDefault(); this.parentNode.classList.toggle('collapsed');
+  } ));
+  document.querySelectorAll('.wrap').forEach(elem => elem.addEventListener('click', function(e) {
+    this.classList.remove('collapsed');
+  } ));
   setIframeHeight();
 };
 
@@ -291,16 +297,4 @@ function dragPopup(e) {
   
   popup.onmousedown = null;
   return false;
-}
-
-function toggleLN() { /* During project development: toggle the line numbers on and off - that appear in the display */
-  var x = document.querySelectorAll(".z");
-  if (x[0].style.display == "none") {
-    var toggled =  "inline";
-  } else {
-    var toggled =  "none";
-  }
-  for (var i = 0; i < x.length; i++) {
-    x[i].style.display = toggled;
-  }
 }
